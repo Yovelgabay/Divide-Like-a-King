@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Zap, Rows } from 'lucide-react';
-import PracticeMode from '../components/multiplication/PracticeMode';
-import NumberSelection from '../components/multiplication/NumberSelection';
+import PracticeMode from '../Components/multiplication/PracticeMode';
+import NumberSelection from '../Components/multiplication/NumberSelection';
 
 export default function MultiplicationKing() {
   const [mode, setMode] = useState(null); // 'fast', 'byNumber', or 'practice'
