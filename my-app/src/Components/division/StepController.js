@@ -72,7 +72,7 @@ export default function StepController({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200"
+      className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 lg:w-96"
     >
       <div className="text-center mb-6">
         <div className="text-4xl mb-3">{stepInfo.emoji}</div>

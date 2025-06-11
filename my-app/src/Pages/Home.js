@@ -214,10 +214,10 @@ export default function Home() {
 
         {/* Game Content */}
         <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
-          {/* Main column */}
-          <div className="lg:w-3/4 flex flex-col gap-8 h-full overflow-auto">
+          {/* Division grid and step controller */}
+          <div className="lg:w-2/3 flex flex-col lg:flex-row gap-8 h-full overflow-auto">
             {currentProblem && (
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
                 <DivisionGrid
                   dividend={currentProblem.dividend}
                   divisor={currentProblem.divisor}
@@ -284,7 +284,7 @@ export default function Home() {
           </div>
 
           {/* Progress Tracker */}
-          <div className="lg:w-1/4 overflow-auto">
+          <div className="lg:w-1/3 lg:max-w-xs overflow-auto">
             {currentStep && (
               <ProgressTracker
                 currentStep={currentStep.type}
