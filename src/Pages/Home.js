@@ -198,7 +198,8 @@ export default function Home() {
       <div className="max-w-7xl mx-auto flex flex-col flex-grow">
         {/* Score and new problem button */}
         <div className="flex justify-between items-center mb-2 gap-3">
-          <div className="text-center mb-4">תרגיל החילוק: &nbsp;
+          <div className="text-center mb-4">
+            תרגיל החילוק: &nbsp;
             <h2
               dir="ltr"
               className="text-3xl md:text-2xl font-mono font-bold text-gray-700 bg-white/70 backdrop-blur-sm p-2 rounded-2xl shadow-md border border-gray-200 inline-block "

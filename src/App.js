@@ -1,8 +1,8 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Header from './Components/Header';
-import Home from './Pages/Home';
-import MultiplicationKing from './Pages/MultiplicationKing';
+import React from "react";
+import {Routes, Route} from "react-router-dom";
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
+import MultiplicationKing from "./Pages/MultiplicationKing";
 
 function App() {
   return (
