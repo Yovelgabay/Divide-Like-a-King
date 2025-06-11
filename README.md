@@ -2,50 +2,31 @@
 
 This project contains React components for teaching long division and multiplication.
 
-## Setup
+## Getting Started
 
-Install dependencies and start the development server:
+The React application lives in the `my-app` directory and was created with
+Create React App. To run the project locally:
 
 ```bash
+cd my-app
 npm install
-npm run dev
-```
-
-Build the project with:
-
-```bash
-npm run build
-```
-
-Serve the production build locally:
-
-```bash
 npm start
 ```
 
-## Alias Configuration
+### Building
 
-The code imports modules using the `@/` prefix, for example:
+To create an optimized production build:
 
-```js
-import { Button } from '@/components/ui/button';
+```bash
+cd my-app
+npm run build
 ```
 
-When using Vite, add the following alias configuration to `vite.config.js` so `@/` resolves to the project root:
+### Testing
 
-```js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+Run the test suite with:
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './')
-    }
-  }
-});
+```bash
+cd my-app
+npm test
 ```
-
-This allows absolute imports from the root directory.
