@@ -1,7 +1,7 @@
 import React from "react";
 import {Link, useLocation} from "react-router-dom";
-import {createPageUrl} from "@/utils";
-import {Button} from "@/components/ui/button";
+import {createPageUrl} from "./utils";
+import {Button} from "./components/ui/button";
 import {Calculator, Crown} from "lucide-react";
 
 export default function Layout({children, currentPageName}) {

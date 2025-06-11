@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react";
 import {motion} from "framer-motion";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import {Button} from "../../components/ui/button";
+import {Input} from "../../components/ui/input";
 import {CheckCircle, XCircle} from "lucide-react";
 
 const stepDescriptions = {
