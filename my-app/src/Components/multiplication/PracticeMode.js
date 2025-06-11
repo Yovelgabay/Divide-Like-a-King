@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
-import {Button} from "../../components/ui/button";
-import {Input} from "../../components/ui/input";
+import {Button} from "../../ui/button";
+import {Input} from "../../ui/input";
 import {motion, AnimatePresence} from "framer-motion";
 import {Timer, Check, X, ArrowRight} from "lucide-react";
 

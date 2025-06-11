@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../ui/button";
 import { X } from "lucide-react";
 
 export default function TutorialModal({ isOpen, onClose }) {
