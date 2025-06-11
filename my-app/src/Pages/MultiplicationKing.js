@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Zap, Rows } from 'lucide-react';
 import PracticeMode from '../Components/multiplication/PracticeMode';
 import NumberSelection from '../Components/multiplication/NumberSelection';
+import Header from '../Components/Header';
 
 export default function MultiplicationKing() {
   const [mode, setMode] = useState(null); // 'fast', 'byNumber', or 'practice'
@@ -37,7 +38,9 @@ export default function MultiplicationKing() {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8 flex items-center justify-center">
+    <div dir="rtl" className="min-h-screen flex flex-col">
+      <Header />
+      <div className="flex-1 p-4 md:p-8 flex items-center justify-center">
       <div className="max-w-2xl w-full text-center">
         <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 bg-clip-text text-transparent mb-4">
           מלך לוח הכפל
