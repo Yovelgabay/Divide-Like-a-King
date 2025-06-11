@@ -1,14 +1,15 @@
 # Divide Like a King
 
-This project contains React components for teaching long division and multiplication.
+This repository contains a Create React App located in the `my-app` directory. All source files live under `my-app/src`.
 
 ## Setup
 
 Install dependencies and start the development server:
 
 ```bash
+cd my-app
 npm install
-npm run dev
+npm start
 ```
 
 Build the project with:
@@ -17,35 +18,20 @@ Build the project with:
 npm run build
 ```
 
-Serve the production build locally:
+## Path Alias
 
-```bash
-npm start
-```
+The code imports modules using the `@/` prefix. CRA resolves this alias using the `jsconfig.json` file:
 
-## Alias Configuration
-
-The code imports modules using the `@/` prefix, for example:
-
-```js
-import { Button } from '@/components/ui/button';
-```
-
-When using Vite, add the following alias configuration to `vite.config.js` so `@/` resolves to the project root:
-
-```js
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
-
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './')
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"]
     }
-  }
-});
+  },
+  "include": ["src"]
+}
 ```
 
-This allows absolute imports from the root directory.
+This configuration allows absolute imports from the `src` directory.
