@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { RefreshCw } from "lucide-react";
 
-import DivisionGrid from "../components/division/DivisionGrid";
-import StepController from "../components/division/StepController";
-import ProgressTracker from "../components/division/ProgressTracker";
+import DivisionGrid from "../Components/division/DivisionGrid";
+import StepController from "../Components/division/StepController";
+import ProgressTracker from "../Components/division/ProgressTracker";
 
 export default function Home() {
   const [currentProblem, setCurrentProblem] = useState(null);
