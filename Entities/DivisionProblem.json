@@ -1,0 +1,66 @@
+{
+  "name": "DivisionProblem",
+  "type": "object",
+  "properties": {
+    "dividend": {
+      "type": "number",
+      "description": "המספר המחולק"
+    },
+    "divisor": {
+      "type": "number",
+      "description": "המחלק"
+    },
+    "quotient_digits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "ספרות המנה"
+    },
+    "current_step": {
+      "type": "number",
+      "default": 0,
+      "description": "השלב הנוכחי"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "divide",
+              "multiply",
+              "subtract",
+              "bring_down"
+            ]
+          },
+          "working_number": {
+            "type": "number"
+          },
+          "result": {
+            "type": "string"
+          },
+          "position": {
+            "type": "number"
+          },
+          "multiply_result": {
+            "type": "number"
+          },
+          "remainder": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "dividend",
+    "divisor"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "name": "GameSession",
+  "type": "object",
+  "properties": {
+    "current_problem": {
+      "type": "object",
+      "properties": {
+        "dividend": {
+          "type": "number",
+          "description": "המספר המחולק"
+        },
+        "divisor": {
+          "type": "number",
+          "description": "המחלק"
+        },
+        "quotient": {
+          "type": "string",
+          "description": "המנה (התוצאה)"
+        },
+        "remainder": {
+          "type": "number",
+          "description": "השארית"
+        }
+      }
+    },
+    "current_step": {
+      "type": "number",
+      "description": "השלב הנוכחי"
+    },
+    "steps_completed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "step_type": {
+            "type": "string",
+            "enum": [
+              "divide",
+              "multiply",
+              "subtract",
+              "bring_down"
+            ]
+          },
+          "user_answer": {
+            "type": "string"
+          },
+          "correct_answer": {
+            "type": "string"
+          },
+          "is_correct": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "score": {
+      "type": "number",
+      "default": 0
+    },
+    "stars": {
+      "type": "number",
+      "default": 0
+    },
+    "problems_solved": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": []
+}
