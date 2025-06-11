@@ -80,5 +80,6 @@ export default function MultiplicationKing() {
         </div>
       </div>
     </div>
+    </div>
   );
 }
