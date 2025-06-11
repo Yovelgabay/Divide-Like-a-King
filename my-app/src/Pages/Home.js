@@ -213,9 +213,81 @@ export default function Home() {
         </div>
 
         {/* Game Content */}
-        <div className="flex flex-col gap-8 flex-grow overflow-hidden">
-          {/* Progress Tracker */}
-          <div className="w-full overflow-auto">
+        <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
+          {/* Division grid */}
+          <div className="lg:w-1/2 flex flex-col gap-8 h-full overflow-auto">
+            {currentProblem && (
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
+                <DivisionGrid
+                  dividend={currentProblem.dividend}
+                  divisor={currentProblem.divisor}
+                  quotientDigits={quotientDigits}
+                  workingSteps={workingSteps}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Step controller */}
+          <div className="lg:w-1/3 flex flex-col items-start justify-start gap-8 overflow-auto">
+            {currentStep && currentStepIndex < currentProblem?.steps?.length && (
+              <StepController
+                currentStep={currentStep.type}
+                stepData={currentStep}
+                onSubmitAnswer={handleStepSubmit}
+                showFeedback={showFeedback}
+                isCorrect={isCorrect}
+                correctAnswer={currentStep.answer}
+              />
+            )}
+
+            {currentProblem && currentStepIndex >= currentProblem.steps.length && (
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                className="text-center p-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl border border-green-200"
+              >
+                <motion.div
+                  className="text-6xl mb-4"
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 0.5, repeat: 3 }}
+                >
+                  🎉
+                </motion.div>
+                <h3 className="text-3xl font-bold text-green-700 mb-2">כל הכבוד! 🌟</h3>
+                <p className="text-green-600 text-xl mb-4">סיימת את התרגיל בהצלחה רבה!</p>
+
+                <div dir="ltr" className="text-2xl font-mono text-green-800 bg-green-200/50 p-3 rounded-lg inline-block mb-6">
+                  {currentProblem.dividend} : {currentProblem.divisor} = {finalQuotient}
+                  {finalRemainder > 0 && ` (שארית ${finalRemainder})`}
+                </div>
+
+                <div className="flex justify-center gap-2 mb-6">
+                  {[...Array(5)].map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="text-2xl"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      ⭐
+                    </motion.span>
+                  ))}
+                </div>
+                <p className="text-green-500 text-lg font-semibold mb-6">הניקוד שלך: {score} נקודות</p>
+                <Button
+                  onClick={generateNewProblem}
+                  className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-2xl text-lg font-semibold shadow-lg"
+                >
+                  לעוד תרגיל! 🚀
+                </Button>
+              </motion.div>
+            )}
+          </div>
+
+          {/* Progress tracker */}
+          <div className="lg:w-1/6 overflow-auto">
             {currentStep && (
               <ProgressTracker
                 currentStep={currentStep.type}
@@ -223,80 +295,6 @@ export default function Home() {
               />
             )}
           </div>
-
-          {/* Division grid and step controller */}
-          <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-auto">
-            <div className="lg:w-1/2">
-              {currentProblem && (
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
-                  <DivisionGrid
-                    dividend={currentProblem.dividend}
-                    divisor={currentProblem.divisor}
-                  quotientDigits={quotientDigits}
-                  workingSteps={workingSteps}
-                />
-              </div>
-            )}
-
-            </div>
-
-            <div className="lg:w-1/2 flex items-start justify-center">
-              {currentStep && currentStepIndex < currentProblem?.steps?.length && (
-                <StepController
-                  currentStep={currentStep.type}
-                  stepData={currentStep}
-                  onSubmitAnswer={handleStepSubmit}
-                  showFeedback={showFeedback}
-                  isCorrect={isCorrect}
-                  correctAnswer={currentStep.answer}
-                />
-              )}
-
-              {currentProblem && currentStepIndex >= currentProblem.steps.length && (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="text-center p-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl border border-green-200"
-                >
-                  <motion.div
-                    className="text-6xl mb-4"
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 0.5, repeat: 3 }}
-                  >
-                    🎉
-                  </motion.div>
-                  <h3 className="text-3xl font-bold text-green-700 mb-2">כל הכבוד! 🌟</h3>
-                  <p className="text-green-600 text-xl mb-4">סיימת את התרגיל בהצלחה רבה!</p>
-
-                  <div dir="ltr" className="text-2xl font-mono text-green-800 bg-green-200/50 p-3 rounded-lg inline-block mb-6">
-                    {currentProblem.dividend} : {currentProblem.divisor} = {finalQuotient}
-                    {finalRemainder > 0 && ` (שארית ${finalRemainder})`}
-                  </div>
-
-                  <div className="flex justify-center gap-2 mb-6">
-                    {[...Array(5)].map((_, i) => (
-                      <motion.span
-                        key={i}
-                        className="text-2xl"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
-                        ⭐
-                      </motion.span>
-                    ))}
-                  </div>
-                  <p className="text-green-500 text-lg font-semibold mb-6">הניקוד שלך: {score} נקודות</p>
-                  <Button
-                    onClick={generateNewProblem}
-                    className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-2xl text-lg font-semibold shadow-lg"
-                  >
-                    לעוד תרגיל! 🚀
-                  </Button>
-                </motion.div>
-              )}
-            </div>
-
         </div>
       </div>
     </div>
