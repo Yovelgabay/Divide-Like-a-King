@@ -72,7 +72,7 @@ export default function StepController({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white rounded-2xl shadow-xl p-6 border border-gray-200"
+      className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 lg:w-96"
     >
       <div className="text-center mb-6">
         <div className="text-4xl mb-3">{stepInfo.emoji}</div>
@@ -105,14 +105,14 @@ export default function StepController({
         </div>
         
         {!showFeedback && (
-          <form onSubmit={handleSubmit} className="flex gap-3 max-w-sm mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-sm mx-auto">
             <Input
               ref={inputRef}
               type="number"
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="תשובה..."
-              dir="ltr"
+              dir="rtl"
               className="text-center text-lg font-semibold border-2 focus:border-blue-400"
               autoFocus
             />
