@@ -12,6 +12,10 @@ npm install
 npm start
 ```
 
+If you pull new changes that update dependencies, run `npm install` again to
+ensure packages like **react-router-dom** are installed before starting the
+development server.
+
 Build the project with:
 
 ```bash

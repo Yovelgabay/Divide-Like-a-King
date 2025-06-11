@@ -112,6 +112,7 @@ export default function StepController({
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="תשובה..."
+              dir="ltr"
               className="text-center text-lg font-semibold border-2 focus:border-blue-400"
               autoFocus
             />

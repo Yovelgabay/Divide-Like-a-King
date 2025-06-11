@@ -189,46 +189,35 @@ export default function Home() {
   const currentStep = currentProblem.steps[currentStepIndex];
 
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-4 gap-4">
-          <div className="text-center md:text-right">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
-              מלך החילוק הארוך
-            </h1>
-            <p className="text-gray-600">בואו נפתור יחד את התרגיל!</p>
+    <div dir="rtl" className="h-screen flex flex-col p-4 md:p-8">
+      <div className="max-w-7xl mx-auto flex flex-col flex-grow">
+        {/* Score and new problem button */}
+        <div className="flex justify-end items-center mb-4 gap-3">
+          <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border border-purple-100">
+            <span className="text-purple-600 font-bold">ניקוד: {score}</span>
           </div>
-          
-          <div className="flex gap-3 items-center">
-            <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border border-purple-100">
-              <span className="text-purple-600 font-bold">ניקוד: {score}</span>
-            </div>
-            <Button
-              onClick={generateNewProblem}
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white flex items-center gap-2"
-            >
-              <RefreshCw className="w-5 h-5" />
-              תרגיל חדש
-            </Button>
-          </div>
+          <Button
+            onClick={generateNewProblem}
+            className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white flex items-center gap-2"
+          >
+            <RefreshCw className="w-5 h-5" />
+            תרגיל חדש
+          </Button>
         </div>
 
         {/* Display Current Problem */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <h2 dir="ltr" className="text-3xl md:text-4xl font-mono text-gray-700 bg-white/70 backdrop-blur-sm p-4 rounded-2xl shadow-md border border-gray-200 inline-block">
             {currentProblem.dividend} : {currentProblem.divisor}
           </h2>
         </div>
 
         {/* Game Content */}
-        <div className="grid lg:grid-cols-4 gap-8">
-          
-          {/* Division Grid - Takes up 3 columns */}
-          <div className="lg:col-span-3">
+        <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
+          {/* Main column */}
+          <div className="lg:w-3/4 flex flex-col gap-8 h-full overflow-auto">
             {currentProblem && (
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 mb-8">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100">
                 <DivisionGrid
                   dividend={currentProblem.dividend}
                   divisor={currentProblem.divisor}
@@ -237,8 +226,7 @@ export default function Home() {
                 />
               </div>
             )}
-            
-            {/* Step Controller */}
+
             {currentStep && currentStepIndex < currentProblem?.steps?.length && (
               <StepController
                 currentStep={currentStep.type}
@@ -249,15 +237,14 @@ export default function Home() {
                 correctAnswer={currentStep.answer}
               />
             )}
-            
-            {/* Completion Message */}
+
             {currentProblem && currentStepIndex >= currentProblem.steps.length && (
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="text-center p-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl border border-green-200"
               >
-                <motion.div 
+                <motion.div
                   className="text-6xl mb-4"
                   animate={{ rotate: [0, 10, -10, 0] }}
                   transition={{ duration: 0.5, repeat: 3 }}
@@ -295,9 +282,9 @@ export default function Home() {
               </motion.div>
             )}
           </div>
-          
-          {/* Progress Tracker - Takes up 1 column */}
-          <div className="lg:col-span-1">
+
+          {/* Progress Tracker */}
+          <div className="lg:w-1/4 overflow-auto">
             {currentStep && (
               <ProgressTracker
                 currentStep={currentStep.type}
