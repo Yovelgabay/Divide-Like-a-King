@@ -105,7 +105,7 @@ export default function StepController({
         </div>
         
         {!showFeedback && (
-          <form onSubmit={handleSubmit} className="flex gap-3 max-w-sm mx-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-sm mx-auto">
             <Input
               ref={inputRef}
               type="number"

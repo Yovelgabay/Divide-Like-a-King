@@ -213,28 +213,39 @@ export default function Home() {
         </div>
 
         {/* Game Content */}
-        <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
-          {/* Division grid */}
-          <div className="lg:w-1/2 flex flex-col gap-8 h-full overflow-auto">
-            {currentProblem && (
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
-                <DivisionGrid
-                  dividend={currentProblem.dividend}
-                  divisor={currentProblem.divisor}
+        <div className="flex flex-col gap-8 flex-grow overflow-hidden">
+          {/* Progress tracker */}
+          <div className="w-full">
+            {currentStep && (
+              <ProgressTracker
+                currentStep={currentStep.type}
+                completedSteps={completedSteps}
+              />
+            )}
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
+            {/* Division grid */}
+            <div className="lg:w-2/5 flex flex-col gap-8 h-full overflow-auto">
+              {currentProblem && (
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
+                  <DivisionGrid
+                    dividend={currentProblem.dividend}
+                    divisor={currentProblem.divisor}
                   quotientDigits={quotientDigits}
                   workingSteps={workingSteps}
                 />
               </div>
             )}
-          </div>
+            </div>
 
-          {/* Step controller */}
-          <div className="lg:w-1/3 flex flex-col items-start justify-start gap-8 overflow-auto">
-            {currentStep && currentStepIndex < currentProblem?.steps?.length && (
-              <StepController
-                currentStep={currentStep.type}
-                stepData={currentStep}
-                onSubmitAnswer={handleStepSubmit}
+            {/* Step controller */}
+            <div className="lg:w-3/5 flex flex-col items-start justify-start gap-8 overflow-auto">
+              {currentStep && currentStepIndex < currentProblem?.steps?.length && (
+                <StepController
+                  currentStep={currentStep.type}
+                  stepData={currentStep}
+                  onSubmitAnswer={handleStepSubmit}
                 showFeedback={showFeedback}
                 isCorrect={isCorrect}
                 correctAnswer={currentStep.answer}
@@ -283,16 +294,6 @@ export default function Home() {
                   לעוד תרגיל! 🚀
                 </Button>
               </motion.div>
-            )}
-          </div>
-
-          {/* Progress tracker */}
-          <div className="lg:w-1/6 overflow-auto">
-            {currentStep && (
-              <ProgressTracker
-                currentStep={currentStep.type}
-                completedSteps={completedSteps}
-              />
             )}
           </div>
         </div>
