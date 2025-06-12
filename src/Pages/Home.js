@@ -195,9 +195,9 @@ export default function Home() {
 
   return (
     <div dir="rtl" className="h-screen flex flex-col p-4 md:p-8">
-      <div className="max-w-7xl mx-auto flex flex-col flex-grow">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row flex-grow">
         {/* Score and new problem button */}
-        <div className="flex justify-between items-center mb-2 gap-3">
+        <div className="flex justify-between items-center mb-2 gap-3 sticky top-0 bg-white/80 backdrop-blur-sm z-10 sm:static sm:bg-transparent sm:backdrop-blur-none">
           <div className="text-center mb-4">
             תרגיל החילוק: &nbsp;
             <h2
@@ -235,11 +235,11 @@ export default function Home() {
             )}
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-8 flex-grow overflow-hidden">
+          <div className="flex flex-row flex-wrap lg:flex-row gap-8 flex-grow overflow-hidden">
             {/* Division grid */}
             <div className=" flex flex-col gap-8 h-full overflow-auto">
               {currentProblem && (
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 flex-grow">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 border border-purple-100 md:flex-grow">
                   <DivisionGrid
                     dividend={currentProblem.dividend}
                     divisor={currentProblem.divisor}

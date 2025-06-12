@@ -12,7 +12,7 @@ export default function ProgressTracker({ currentStep, completedSteps = [] }) {
   return (
     <div className="w-full bg-white rounded-2xl shadow-lg px-6 py-4 border border-gray-200">
       <h3 className="text-lg font-bold text-center mb-4">שלבי הפתרון</h3>
-      <div className="flex justify-between gap-3">
+      <div className="flex flex-row md:flex-col justify-between gap-3">
         {steps.map((step) => {
           const isActive = currentStep === step.key;
           const isCompleted = completedSteps.includes(step.key);
