@@ -7,9 +7,9 @@ export default function Header() {
   const isMultiplicationPage = location.pathname.includes("/MultiplicationKing");
 
   return (
-    <header className="bg-white/80 backdrop-blur-sm border-b border-purple-100 shadow-sm sticky top-0 z-50">
+    <header className="bg-white/80 backdrop-blur-sm border-b border-purple-100 shadow-sm md:sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
               <span className="text-2xl">{isMultiplicationPage ? '👑' : '🧮'}</span>

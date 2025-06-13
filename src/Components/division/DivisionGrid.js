@@ -85,7 +85,14 @@ export default function DivisionGrid({
     return grid;
   };
   
-  const gridData = createGridData();
+    const gridData = createGridData();
+
+    const cellSize =
+      parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          "--cell-size"
+        )
+      ) || 35;
   
   const getCellClass = (cellData) => {
     if (!cellData) return "cell empty";
@@ -110,9 +117,9 @@ export default function DivisionGrid({
   };
 
   return (
-    <div className="flex justify-center mb-4">
+    <div className="flex justify-center md:mb-4">
       <div 
-        className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200 relative"
+        className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-2 md:p-6 border-2 border-blue-200 relative"
         style={{ direction: 'ltr' }}
       >
         <div className="relative">
@@ -124,8 +131,8 @@ export default function DivisionGrid({
               animate={{ opacity: 1 }}
               transition={{ delay: sign.row * 0.3 }}
               style={{
-                top: `calc(${sign.row * 35}px + 5px)`,
-                left: `calc(${(sign.col) * 35}px - 15px)`,
+                  top: `calc(${sign.row * cellSize}px + 5px)`,
+                  left: `calc(${sign.col * cellSize}px - 15px)`,
                 zIndex: 10
               }}
             >
@@ -135,10 +142,10 @@ export default function DivisionGrid({
           
           <div 
             className="division-grid-container"
-            style={{ 
-              display: 'grid',
-              gridTemplateColumns: `repeat(${gridCols}, 35px)`,
-              gridTemplateRows: `repeat(${gridRows}, 35px)`,
+              style={{
+                display: 'grid',
+                gridTemplateColumns: `repeat(${gridCols}, ${cellSize}px)`,
+                gridTemplateRows: `repeat(${gridRows}, ${cellSize}px)`,
               gap: '1px',
               justifyContent: 'center',
               fontFamily: 'Courier New, monospace',
@@ -169,9 +176,9 @@ export default function DivisionGrid({
                     className="border-r-2 border-black"
                     style={{
                         position: 'absolute',
-                        left: `${dividendStr.length * 35}px`,
-                        top: '35px',
-                        height: '35px'
+                        left: `${dividendStr.length * cellSize}px`,
+                        top: `${cellSize}px`,
+                        height: `${cellSize}px`
                     }}
                  ></div>
             </div>
