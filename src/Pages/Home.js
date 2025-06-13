@@ -206,6 +206,9 @@ export default function Home() {
       >
         <div className="max-w-7xl mx-auto flex flex-col flex-grow">
           {/* Score and new problem button */}
+          <p className="text-gray-600 text-xl text-center my-2 mb-6 font-semibold">
+  בוא נפתור שלב אחרי שלב חילוק ארוך בצורה הכי פשוטה שיש! ✨
+</p>
           <div className="flex flex-col-reverse md:flex-row  justify-between items-center mb-2 gap-3 md:sticky top-0 bg-white/80 backdrop-blur-sm z-10 sm:static sm:bg-transparent sm:backdrop-blur-none">
             <div className="text-center mb-4">
               תרגיל החילוק: &nbsp;
@@ -247,15 +250,16 @@ export default function Home() {
             </div>
 
             <div
-              className="flex flex-col md:flex-row 
-           lg:flex-row gap-8 flex-grow overflow-hidden"
+              className="flex flex-col-reverse md:flex-row 
+           lg:flex-row gap-6 md:gap-8 flex-grow overflow-hidden"
             >
+              <div className="block lg:hidden w-full">
+                <AdBanner position="mobile" />
+              </div>
               {/* Division grid */}
               <div className=" flex flex-col gap-8 md:h-full overflow-auto">
                 {currentProblem && (
-                  <div 
-                    className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow"
-                  >
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow">
                     <DivisionGrid
                       dividend={currentProblem.dividend}
                       divisor={currentProblem.divisor}
@@ -285,9 +289,7 @@ export default function Home() {
                       }
                     />
                   )}
-                <div className="block lg:hidden w-full">
-                  <AdBanner position="mobile" />
-                </div>
+
                 {currentProblem &&
                   currentStepIndex >= currentProblem.steps.length && (
                     <motion.div

@@ -71,6 +71,12 @@ export default function PracticeMode({selectedNumber, onBack}) {
 
     setTimeout(() => {
       setFeedback(null);
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      }, 100);
       if (isCorrect) {
         setScore((prev) => prev + 10); // 10 points per correct answer
         if (!isFastMode) {
@@ -119,7 +125,7 @@ export default function PracticeMode({selectedNumber, onBack}) {
 
         {problem && (
           <form onSubmit={handleSubmit}>
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
               <motion.div
                 key={problem.num1 * 100 + problem.num2}
                 initial={{opacity: 0, y: -20}}

@@ -10,10 +10,15 @@ export default function Header() {
     <header className="bg-white/80 backdrop-blur-sm border-b border-purple-100 shadow-sm md:sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+        
           <div className="flex items-center gap-3">
+          
+
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-blue-500 rounded-2xl flex items-center justify-center shadow-lg">
+            
               <span className="text-2xl">{isMultiplicationPage ? '👑' : '🧮'}</span>
             </div>
+            
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                 {isMultiplicationPage ? 'מלך לוח הכפל' : 'מלך החילוק הארוך'}
@@ -23,6 +28,7 @@ export default function Header() {
               </p>
             </div>
           </div>
+          
           <div className="flex items-center gap-4">
             {isMultiplicationPage ? (
               <Link to="/">
