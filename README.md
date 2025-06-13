@@ -1,13 +1,12 @@
 # Divide Like a King
 
-This repository contains a Create React App located in the `my-app` directory. All source files live under `my-app/src`.
+This repository contains a Create React App. All source files live under `src`.
 
 ## Setup
 
 Install dependencies and start the development server:
 
 ```bash
-cd my-app
 npm install
 npm start
 ```
