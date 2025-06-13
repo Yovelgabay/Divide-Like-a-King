@@ -55,7 +55,6 @@ export default function StepController({
   const stepInfo = stepInstructions[currentStep];
   useEffect(() => {
     if (isCorrect && showFeedback && onCorrectAnswerScrollTo) {
-      // בדיקת מובייל בלבד
       const isMobile = window.innerWidth < 768;
       if (isMobile) {
         setTimeout(() => {

@@ -20,7 +20,7 @@ export default function Home() {
   const [score, setScore] = useState(0);
   const [finalQuotient, setFinalQuotient] = useState("");
   const [finalRemainder, setFinalRemainder] = useState("");
-  const gridRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     generateNewProblem();
@@ -237,7 +237,7 @@ export default function Home() {
           {/* Game Content */}
           <div className="flex flex-col gap-4 md:gap-8 flex-grow overflow-hidden">
             {/* Progress tracker */}
-            <div className="w-full">
+            <div className="w-full" ref={progressRef}>
               {currentStep && (
                 <ProgressTracker
                   currentStep={currentStep.type}
@@ -253,8 +253,7 @@ export default function Home() {
               {/* Division grid */}
               <div className=" flex flex-col gap-8 md:h-full overflow-auto">
                 {currentProblem && (
-                  <div
-                    ref={gridRef}
+                  <div 
                     className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow"
                   >
                     <DivisionGrid
@@ -279,7 +278,7 @@ export default function Home() {
                       isCorrect={isCorrect}
                       correctAnswer={currentStep.answer}
                       onCorrectAnswerScrollTo={() =>
-                        gridRef.current?.scrollIntoView({
+                        progressRef.current?.scrollIntoView({
                           behavior: "smooth",
                           block: "start",
                         })
