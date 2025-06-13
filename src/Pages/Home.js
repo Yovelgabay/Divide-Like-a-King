@@ -3,7 +3,6 @@ import {motion, AnimatePresence} from "framer-motion";
 import {Button} from "../ui/button";
 import {RefreshCw} from "lucide-react";
 
-
 import AdBanner from "../Components/ads/AdBanner";
 import DivisionGrid from "../Components/division/DivisionGrid";
 import StepController from "../Components/division/StepController";
@@ -196,140 +195,148 @@ export default function Home() {
   const currentStep = currentProblem.steps[currentStepIndex];
 
   return (
-    <div dir="rtl" className="h-screen flex flex-col p-4 md:p-8">
-      <div className="max-w-7xl mx-auto flex flex-col flex-grow">
-        {/* Score and new problem button */}
-        <div className="flex flex-col-reverse md:flex-row  justify-between items-center mb-2 gap-3 md:sticky top-0 bg-white/80 backdrop-blur-sm z-10 sm:static sm:bg-transparent sm:backdrop-blur-none">
-          <div className="text-center mb-4">
-            תרגיל החילוק: &nbsp;
-            <h2
-              dir="ltr"
-              className="text-3xl md:text-2xl font-mono font-bold text-gray-700 bg-white/70 backdrop-blur-sm p-2 rounded-2xl shadow-md border border-gray-200 inline-block "
-            >
-              {currentProblem.dividend} : {currentProblem.divisor}
-            </h2>
-          </div>
-          <div className="flex justify-end items-center mb-4 gap-3">
-            <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border border-purple-100">
-              <span className="text-purple-600 font-bold">ניקוד: {score}</span>
+    <>
+      <AdBanner position="left" />
+      <AdBanner position="right" />
+      <div
+        dir="rtl"
+        className="flex flex-col p-4 md:p-8 mb-5 overflow-x-hidden max-w-screen"
+      >
+        <div className="max-w-7xl mx-auto flex flex-col flex-grow">
+          {/* Score and new problem button */}
+          <div className="flex flex-col-reverse md:flex-row  justify-between items-center mb-2 gap-3 md:sticky top-0 bg-white/80 backdrop-blur-sm z-10 sm:static sm:bg-transparent sm:backdrop-blur-none">
+            <div className="text-center mb-4">
+              תרגיל החילוק: &nbsp;
+              <h2
+                dir="ltr"
+                className="text-3xl md:text-2xl font-mono font-bold text-gray-700 bg-white/70 backdrop-blur-sm p-2 rounded-2xl shadow-md border border-gray-200 inline-block "
+              >
+                {currentProblem.dividend} : {currentProblem.divisor}
+              </h2>
             </div>
-            <Button
-              onClick={generateNewProblem}
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white flex items-center gap-2"
-            >
-              <RefreshCw className="w-5 h-5" />
-              תרגיל חדש
-            </Button>
-          </div>
-        </div>
-
-        {/* Display Current Problem */}
-
-        {/* Game Content */}
-        <div className="flex flex-col gap-4 md:gap-8 flex-grow overflow-hidden">
-          {/* Progress tracker */}
-          <div className="w-full">
-            {currentStep && (
-              <ProgressTracker
-                currentStep={currentStep.type}
-                completedSteps={completedSteps}
-              />
-            )}
+            <div className="flex justify-end items-center mb-4 gap-3">
+              <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border border-purple-100">
+                <span className="text-purple-600 font-bold">
+                  ניקוד: {score}
+                </span>
+              </div>
+              <Button
+                onClick={generateNewProblem}
+                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white flex items-center gap-2"
+              >
+                <RefreshCw className="w-5 h-5" />
+                תרגיל חדש
+              </Button>
+            </div>
           </div>
 
-          <div
-            className="flex flex-col md:flex-row 
-           lg:flex-row gap-8 flex-grow overflow-hidden"
-          >
-            {/* Division grid */}
-            <div className=" flex flex-col gap-8 md:h-full overflow-auto">
-              {currentProblem && (
-                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow">
-                  <DivisionGrid
-                    dividend={currentProblem.dividend}
-                    divisor={currentProblem.divisor}
-                    quotientDigits={quotientDigits}
-                    workingSteps={workingSteps}
-                  />
-                </div>
+          {/* Display Current Problem */}
+
+          {/* Game Content */}
+          <div className="flex flex-col gap-4 md:gap-8 flex-grow overflow-hidden">
+            {/* Progress tracker */}
+            <div className="w-full">
+              {currentStep && (
+                <ProgressTracker
+                  currentStep={currentStep.type}
+                  completedSteps={completedSteps}
+                />
               )}
             </div>
 
-            {/* Step controller */}
-            <div className=" flex flex-col items-start justify-start gap-8 overflow-auto">
-              {currentStep &&
-                currentStepIndex < currentProblem?.steps?.length && (
-                  <StepController
-                    currentStep={currentStep.type}
-                    stepData={currentStep}
-                    onSubmitAnswer={handleStepSubmit}
-                    showFeedback={showFeedback}
-                    isCorrect={isCorrect}
-                    correctAnswer={currentStep.answer}
-                  />
+            <div
+              className="flex flex-col md:flex-row 
+           lg:flex-row gap-8 flex-grow overflow-hidden"
+            >
+              {/* Division grid */}
+              <div className=" flex flex-col gap-8 md:h-full overflow-auto">
+                {currentProblem && (
+                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow">
+                    <DivisionGrid
+                      dividend={currentProblem.dividend}
+                      divisor={currentProblem.divisor}
+                      quotientDigits={quotientDigits}
+                      workingSteps={workingSteps}
+                    />
+                  </div>
                 )}
+              </div>
 
-              {currentProblem &&
-                currentStepIndex >= currentProblem.steps.length && (
-                  <motion.div
-                    initial={{scale: 0.8, opacity: 0}}
-                    animate={{scale: 1, opacity: 1}}
-                    className="text-center p-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl border border-green-200"
-                  >
+              {/* Step controller */}
+              <div className=" flex flex-col items-start justify-start gap-8 overflow-auto">
+                {currentStep &&
+                  currentStepIndex < currentProblem?.steps?.length && (
+                    <StepController
+                      currentStep={currentStep.type}
+                      stepData={currentStep}
+                      onSubmitAnswer={handleStepSubmit}
+                      showFeedback={showFeedback}
+                      isCorrect={isCorrect}
+                      correctAnswer={currentStep.answer}
+                    />
+                  )}
+                <div className="block lg:hidden w-full">
+                  <AdBanner position="mobile" />
+                </div>
+                {currentProblem &&
+                  currentStepIndex >= currentProblem.steps.length && (
                     <motion.div
-                      className="text-6xl mb-4"
-                      animate={{rotate: [0, 10, -10, 0]}}
-                      transition={{duration: 0.5, repeat: 3}}
+                      initial={{scale: 0.8, opacity: 0}}
+                      animate={{scale: 1, opacity: 1}}
+                      className="text-center p-8 bg-gradient-to-r from-green-100 to-emerald-100 rounded-3xl border border-green-200"
                     >
-                      🎉
+                      <motion.div
+                        className="text-6xl mb-4"
+                        animate={{rotate: [0, 10, -10, 0]}}
+                        transition={{duration: 0.5, repeat: 3}}
+                      >
+                        🎉
+                      </motion.div>
+                      <h3 className="text-3xl font-bold text-green-700 mb-2">
+                        כל הכבוד! 🌟
+                      </h3>
+                      <p className="text-green-600 text-xl mb-4">
+                        סיימת את התרגיל בהצלחה רבה!
+                      </p>
+
+                      <div
+                        dir="ltr"
+                        className="text-xl font-mono text-green-800 bg-green-200/50 p-3 rounded-lg inline-block mb-6"
+                      >
+                        {currentProblem.dividend} : {currentProblem.divisor} ={" "}
+                        {finalQuotient}
+                        {finalRemainder > 0 && ` (שארית ${finalRemainder})`}
+                      </div>
+
+                      <div className="flex justify-center gap-2 mb-6">
+                        {[...Array(5)].map((_, i) => (
+                          <motion.span
+                            key={i}
+                            className="text-2xl"
+                            initial={{scale: 0}}
+                            animate={{scale: 1}}
+                            transition={{delay: i * 0.1}}
+                          >
+                            ⭐
+                          </motion.span>
+                        ))}
+                      </div>
+                      <p className="text-green-500 text-lg font-semibold mb-6">
+                        הניקוד שלך: {score} נקודות
+                      </p>
+                      <Button
+                        onClick={generateNewProblem}
+                        className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-2xl text-lg font-semibold shadow-lg"
+                      >
+                        לעוד תרגיל! 🚀
+                      </Button>
                     </motion.div>
-                    <h3 className="text-3xl font-bold text-green-700 mb-2">
-                      כל הכבוד! 🌟
-                    </h3>
-                    <p className="text-green-600 text-xl mb-4">
-                      סיימת את התרגיל בהצלחה רבה!
-                    </p>
-
-                    <div
-                      dir="ltr"
-                      className="text-xl font-mono text-green-800 bg-green-200/50 p-3 rounded-lg inline-block mb-6"
-                    >
-                      {currentProblem.dividend} : {currentProblem.divisor} ={" "}
-                      {finalQuotient}
-                      {finalRemainder > 0 && ` (שארית ${finalRemainder})`}
-                    </div>
-
-                    <div className="flex justify-center gap-2 mb-6">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.span
-                          key={i}
-                          className="text-2xl"
-                          initial={{scale: 0}}
-                          animate={{scale: 1}}
-                          transition={{delay: i * 0.1}}
-                        >
-                          ⭐
-                        </motion.span>
-                      ))}
-                    </div>
-                    <p className="text-green-500 text-lg font-semibold mb-6">
-                      הניקוד שלך: {score} נקודות
-                    </p>
-                    <Button
-                      onClick={generateNewProblem}
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-8 py-3 rounded-2xl text-lg font-semibold shadow-lg"
-                    >
-                      לעוד תרגיל! 🚀
-                    </Button>
-                  </motion.div>
-                )}
+                  )}
+              </div>
             </div>
-          <AdBanner />
-
           </div>
         </div>
       </div>
-
-    </div>
+    </>
   );
 }
