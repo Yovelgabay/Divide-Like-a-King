@@ -3,6 +3,8 @@ import {motion, AnimatePresence} from "framer-motion";
 import {Button} from "../ui/button";
 import {RefreshCw} from "lucide-react";
 
+
+import AdBanner from "../Components/ads/AdBanner";
 import DivisionGrid from "../Components/division/DivisionGrid";
 import StepController from "../Components/division/StepController";
 import ProgressTracker from "../Components/division/ProgressTracker";
@@ -194,7 +196,7 @@ export default function Home() {
   const currentStep = currentProblem.steps[currentStepIndex];
 
   return (
-    <div dir="rtl" className="h-screen flex flex-col p-4 md:p-8">
+    <div dir="rtl" className="flex flex-col p-4 md:p-8">
       <div className="max-w-7xl mx-auto flex flex-col flex-grow">
         {/* Score and new problem button */}
         <div className="flex justify-between items-center mb-2 gap-3">
@@ -319,6 +321,8 @@ export default function Home() {
                   </motion.div>
                 )}
             </div>
+          <AdBanner />
+
           </div>
         </div>
       </div>
