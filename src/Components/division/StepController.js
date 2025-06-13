@@ -46,12 +46,24 @@ export default function StepController({
   showFeedback,
   isCorrect,
   correctAnswer,
+  onCorrectAnswerScrollTo,
 }) {
   const [answer, setAnswer] = useState("");
   const [showHint, setShowHint] = useState(false);
   const inputRef = useRef(null);
 
   const stepInfo = stepInstructions[currentStep];
+  useEffect(() => {
+    if (isCorrect && showFeedback && onCorrectAnswerScrollTo) {
+      // בדיקת מובייל בלבד
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        setTimeout(() => {
+          onCorrectAnswerScrollTo();
+        }, 1200);
+      }
+    }
+  }, [isCorrect, showFeedback]);
 
   useEffect(() => {
     setAnswer("");
@@ -76,7 +88,7 @@ export default function StepController({
     <motion.div
       initial={{opacity: 0, y: 20}}
       animate={{opacity: 1, y: 0}}
-      className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-200 lg:w-96"
+      className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-200 w-full max-w-sm mx-auto lg:w-96"
     >
       <div className="text-center md:mb-6 flex md:flex-col justify-center">
         <div className="text-3xl md:text-4xl md:mb-3">{stepInfo.emoji}</div>

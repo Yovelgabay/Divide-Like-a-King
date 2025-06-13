@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {Button} from "../ui/button";
 import {RefreshCw} from "lucide-react";
+import {useRef} from "react";
 
 import AdBanner from "../Components/ads/AdBanner";
 import DivisionGrid from "../Components/division/DivisionGrid";
@@ -19,6 +20,7 @@ export default function Home() {
   const [score, setScore] = useState(0);
   const [finalQuotient, setFinalQuotient] = useState("");
   const [finalRemainder, setFinalRemainder] = useState("");
+  const gridRef = useRef(null);
 
   useEffect(() => {
     generateNewProblem();
@@ -251,7 +253,10 @@ export default function Home() {
               {/* Division grid */}
               <div className=" flex flex-col gap-8 md:h-full overflow-auto">
                 {currentProblem && (
-                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow">
+                  <div
+                    ref={gridRef}
+                    className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-3 md:p-8 border border-purple-100 md:flex-grow"
+                  >
                     <DivisionGrid
                       dividend={currentProblem.dividend}
                       divisor={currentProblem.divisor}
@@ -273,6 +278,12 @@ export default function Home() {
                       showFeedback={showFeedback}
                       isCorrect={isCorrect}
                       correctAnswer={currentStep.answer}
+                      onCorrectAnswerScrollTo={() =>
+                        gridRef.current?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        })
+                      }
                     />
                   )}
                 <div className="block lg:hidden w-full">
