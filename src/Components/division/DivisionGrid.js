@@ -117,9 +117,9 @@ export default function DivisionGrid({
   };
 
   return (
-    <div className="flex justify-center mb-4">
+    <div className="flex justify-center md:mb-4">
       <div 
-        className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-200 relative"
+        className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-2 md:p-6 border-2 border-blue-200 relative"
         style={{ direction: 'ltr' }}
       >
         <div className="relative">

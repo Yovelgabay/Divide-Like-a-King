@@ -135,7 +135,7 @@ export default function PracticeMode({selectedNumber, onBack}) {
                   type="number"
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value)}
-                  className="text-center text-3xl h-16 mb-6"
+                  className="text-center text-l md:text-3xl h-16 mb-6"
                   disabled={feedback !== null}
                   autoFocus
                 />
