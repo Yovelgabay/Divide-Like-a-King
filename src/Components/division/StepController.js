@@ -76,15 +76,15 @@ export default function StepController({
     <motion.div
       initial={{opacity: 0, y: 20}}
       animate={{opacity: 1, y: 0}}
-      className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 lg:w-96"
+      className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-200 lg:w-96"
     >
-      <div className="text-center mb-6">
-        <div className="text-4xl mb-3">{stepInfo.emoji}</div>
+      <div className="text-center md:mb-6 flex md:flex-col justify-center">
+        <div className="text-3xl md:text-4xl md:mb-3">{stepInfo.emoji}</div>
         <h3 className="text-xl font-bold text-gray-800 mb-2">
           {stepInfo.title}
         </h3>
         <div
-          className={`w-16 h-1 bg-${stepInfo.color}-400 rounded-full mx-auto`}
+          className={`w-16 h-1 bg-${stepInfo.color}-400 rounded-full mx-auto hidden md:block`}
         ></div>
       </div>
 
@@ -124,24 +124,28 @@ export default function StepController({
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="תשובה..."
               dir="rtl"
-              className="text-center text-lg font-semibold border-2 focus:border-blue-400"
+              className="text-center md:text-lg font-semibold border-2 focus:border-blue-400"
               autoFocus
             />
-            <Button
-              type="submit"
-              disabled={!answer.trim()}
-              className={`bg-${stepInfo.color}-500 hover:bg-${stepInfo.color}-600 text-white px-6`}
-            >
-              בדוק
-            </Button>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => setShowHint(!showHint)}
-              className="px-3"
-            >
-              <Lightbulb className="w-4 h-4" />
-            </Button>
+            <div className="flex flex-row w-full gap-2 justify-center md:flex-col">
+              <Button
+                type="submit"
+                disabled={!answer.trim()}
+                className={`bg-${stepInfo.color}-500 hover:bg-${stepInfo.color}-600 text-white px-6 flex-1 basis-4/6 md:basis-auto md:w-full`}
+                style={{minWidth: 0}}
+              >
+                בדוק
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowHint(!showHint)}
+                className="px-3 flex-1 basis-2/6 md:basis-auto md:w-full"
+                style={{minWidth: 0}}
+              >
+                <Lightbulb className="w-4 h-4 mx-auto" />
+              </Button>
+            </div>
           </form>
         )}
 

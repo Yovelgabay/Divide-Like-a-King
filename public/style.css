@@ -4,11 +4,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --cell-size: 35px; /* Updated from 40px to 35px for consistency */
+  --cell-size: 35px;
   --primary-blue: #4f46e5;
   --primary-green: #10b981;
   --primary-yellow: #f59e0b;
   --primary-purple: #8b5cf6;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --cell-size: 28px;
+  }
 }
 
 * {
@@ -22,8 +28,8 @@
 }
 
 .cell {
-  width: 35px; /* Changed from var(--cell-size) to 35px */
-  height: 35px; /* Changed from var(--cell-size) to 35px */
+  width: var(--cell-size);
+  height: var(--cell-size);
   display: flex;
   align-items: center;
   justify-content: center;
