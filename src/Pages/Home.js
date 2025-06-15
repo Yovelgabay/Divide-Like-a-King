@@ -3,6 +3,7 @@ import {motion, AnimatePresence} from "framer-motion";
 import {Button} from "../ui/button";
 import {RefreshCw} from "lucide-react";
 import {useRef} from "react";
+import confetti from "canvas-confetti";
 
 import AdBanner from "../Components/ads/AdBanner";
 import DivisionGrid from "../Components/division/DivisionGrid";
@@ -17,15 +18,20 @@ export default function Home() {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [completedSteps, setCompletedSteps] = useState([]);
-  const [score, setScore] = useState(0);
   const [finalQuotient, setFinalQuotient] = useState("");
   const [finalRemainder, setFinalRemainder] = useState("");
   const progressRef = useRef(null);
+  const [score, setScore] = useState(() => {
+    const saved = localStorage.getItem("division_score");
+    return saved ? parseInt(saved) : 0;
+  });
 
   useEffect(() => {
     generateNewProblem();
   }, []);
-
+  useEffect(() => {
+    localStorage.setItem("division_score", score);
+  }, [score]);
   const generateNewProblem = () => {
     // Generate problems with 3-4 digits for 4th graders
     const divisor = Math.floor(Math.random() * 8) + 2; // 2-9
@@ -175,6 +181,11 @@ export default function Home() {
 
   const handleProblemCompleted = () => {
     setScore((prev) => prev + 50); // Bonus for completing problem
+    confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
     const quotient = Math.floor(
       currentProblem.dividend / currentProblem.divisor
     );
@@ -207,8 +218,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col flex-grow">
           {/* Score and new problem button */}
           <p className="text-gray-600 text-xl text-center my-2 mb-6 font-semibold">
-  בוא נפתור שלב אחרי שלב חילוק ארוך בצורה הכי פשוטה שיש! ✨
-</p>
+            בוא נפתור שלב אחרי שלב חילוק ארוך בצורה הכי פשוטה שיש! ✨
+          </p>
           <div className="flex flex-col-reverse md:flex-row  justify-between items-center mb-2 gap-3 md:sticky top-0 bg-white/80 backdrop-blur-sm z-10 sm:static sm:bg-transparent sm:backdrop-blur-none">
             <div className="text-center mb-4">
               תרגיל החילוק: &nbsp;
